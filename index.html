@@ -228,11 +228,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   .tech-tags{gap:5px;}
   .tech{font-size:.5rem;padding:4px 8px;}
 
-  /* SKILLS - certifications */
-  .cert-grid-4{grid-template-columns:repeat(2,1fr) !important;}
+  /* SKILLS — tout en 1 colonne */
+  .sgrid{grid-template-columns:1fr !important;gap:12px;}
+  .sb{padding:18px;}
   .sb-y{grid-column:span 1 !important;}
-  .sgrid .sb:last-child > div > div{grid-template-columns:repeat(2,1fr) !important;}
-  .skn{font-size:.88rem;}
+  .skn{font-size:.9rem;}
+  .skbar{width:44px;}
+
+  /* CERTIFICATIONS — 2 colonnes propres */
+  .cert-grid-4{grid-template-columns:1fr 1fr !important;gap:10px !important;}
 
   /* CONTACT */
   .cwrap{margin-top:20px;}
@@ -843,7 +847,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
         <div class="skrow"><div class="skdot pu"></div><span class="skn">TCP/IP / Firewall / VPN / Cisco</span><div class="skbar"><div class="skfill pu" data-w="80"></div></div></div>
         <div class="skrow"><div class="skdot pu"></div><span class="skn">systemd / QEMU</span><div class="skbar"><div class="skfill pu" data-w="75"></div></div></div>
       </div>
-      <div class="sb sb-y" style="grid-column:span 2"><div class="sbtit">// Certifications &amp; Plateformes</div>
+      <div class="sb sb-y" style="grid-column:1 / -1"><div class="sbtit">// Certifications &amp; Plateformes</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:4px;" class="cert-grid-4">
           <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--yellow);margin-bottom:5px;">ISC&#178;</div><div style="font-size:.83rem;color:var(--text);">CC Certification</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--yellow);margin-top:4px;">&#9889; EN COURS</div></div>
           <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:5px;">THM</div><div style="font-size:.83rem;color:var(--text);">TryHackMe</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--green);margin-top:4px;">&#9679; ACTIF</div></div>
