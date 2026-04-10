@@ -186,55 +186,95 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 /* Mobile info badges — masqués sur desktop */
 .home-mobile-info{display:none;}
 @media(max-width:768px){.home-mobile-info{display:flex;}}
+/* Cards accordion projets — masquées sur desktop */
+.m-proj-cards{display:none;}
+@media(max-width:768px){.m-proj-cards{display:flex;}}
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;cursor:pointer;background:none;border:none;padding:4px;z-index:1100;position:relative;}
 .hamburger span{display:block;width:24px;height:2px;background:var(--cyan);transition:all .3s ease;transform-origin:center;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-/* Mobile nav overlay */
-.mobile-nav-overlay{position:fixed;inset:0;background:rgba(2,4,8,.98);backdrop-filter:blur(20px);z-index:1050;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;pointer-events:none;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease;}
-.mobile-nav-overlay.open{opacity:1;pointer-events:all;transform:translateY(0);}
-.mobile-nav-overlay .mnav-btn{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;letter-spacing:4px;color:var(--dim2);background:none;border:none;cursor:pointer;padding:16px 32px;text-transform:uppercase;transition:color .2s;width:100%;text-align:center;}
-.mobile-nav-overlay .mnav-btn:hover,.mobile-nav-overlay .mnav-btn.active{color:var(--cyan);}
-.mobile-nav-overlay .mnav-sep{width:60px;height:1px;background:var(--border);margin:4px auto;}
-.mobile-nav-close{position:absolute;top:20px;right:20px;font-size:1.5rem;color:var(--dim2);background:none;border:none;cursor:pointer;padding:8px;}
+/* ── Drawer mobile compact ── */
+.mobile-drawer{
+  position:fixed;top:56px;left:0;right:0;
+  background:rgba(2,4,8,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  z-index:1050;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .3s cubic-bezier(.4,0,.2,1);
+}
+.mobile-drawer.open{max-height:320px;}
+.mobile-drawer .mnav-btn{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.68rem;letter-spacing:3px;
+  color:var(--dim2);
+  background:none;border:none;
+  cursor:pointer;
+  padding:14px 24px;
+  text-transform:uppercase;
+  text-align:left;
+  border-bottom:1px solid var(--border2);
+  transition:color .15s,background .15s;
+  display:flex;align-items:center;gap:10px;
+}
+.mobile-drawer .mnav-btn::before{content:'//';color:var(--pink);font-size:.55rem;}
+.mobile-drawer .mnav-btn:last-child{border-bottom:none;}
+.mobile-drawer .mnav-btn.active{color:var(--cyan);}
+.mobile-drawer .mnav-btn:active{background:rgba(0,245,255,.04);}
 
 /* ═══════════════════════════════════════════════════════════════
    MOBILE — 768px et moins
+   Principe : one-page scroll. Les .page deviennent des <section>
+   empilées. La nav desktop reste intacte (display:none sur mobile).
 ═══════════════════════════════════════════════════════════════ */
 @media(max-width:768px){
-  /* Cursor custom inutile sur touch */
   #cur,#ring{display:none;}
 
-  /* Nav */
+  /* ── Nav ── */
   nav{padding:0 20px;height:56px;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  .page{padding-top:56px;}
 
-  /* Inner padding */
-  .pi{padding:32px 20px 100px;}
+  /* ── One-page : les pages deviennent des blocs normaux ── */
+  .page{
+    position:static !important;
+    opacity:1 !important;
+    pointer-events:all !important;
+    transform:none !important;
+    padding-top:0;
+    overflow-y:visible;
+    display:block !important;
+  }
+  /* Premier bloc : espace après la nav sticky */
+  .page:first-of-type{margin-top:56px;}
 
-  /* Titres */
+  /* Séparateur entre sections */
+  .page + .page{border-top:1px solid var(--border2);}
+
+  /* ── Padding interne ── */
+  .pi{padding:40px 20px 60px;}
+
+  /* ── Titres ── */
   .h2{font-size:1.4rem;}
   .tag{font-size:.58rem;}
 
   /* ── HOME ── */
-  #page-home{align-items:flex-start;}
+  #page-home{display:block;align-items:unset;}
   .hw{grid-template-columns:1fr;gap:0;}
   .hcard{display:none;}
-  .hl{font-size:.6rem;margin-top:20px;margin-bottom:12px;}
-  .hn{font-size:clamp(2.6rem,12vw,3.8rem);animation:fadeUp .5s ease forwards .25s;}
+  .hl{font-size:.6rem;margin-top:0;margin-bottom:12px;}
+  .hn{font-size:clamp(2.4rem,11vw,3.6rem);}
   .hs{font-size:.7rem;letter-spacing:3px;}
   .hd{font-size:.9rem;margin-top:18px;max-width:100%;}
   .hcta{flex-direction:column;gap:10px;margin-top:28px;}
   .btn{justify-content:center;padding:14px 20px;font-size:.65rem;}
-  .hst{gap:20px;margin-top:36px;padding-top:24px;flex-wrap:wrap;}
+  .hst{gap:18px;margin-top:32px;padding-top:22px;flex-wrap:wrap;}
   .stn{font-size:1.6rem;}
   .stl{font-size:.52rem;}
-
-  /* Badges statut mobile — affichés sous le hero */
   .home-mobile-info{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
   .home-mobile-info .hmi{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:1px;color:var(--dim2);padding:5px 12px;border:1px solid var(--border);text-transform:uppercase;}
   .home-mobile-info .hmi.g{color:var(--green);border-color:rgba(0,255,136,.25);}
@@ -247,34 +287,113 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   .eitem{margin-bottom:28px;}
   .eli li{font-size:.88rem;}
 
-  /* ── PROJECTS ── */
-  .pnav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .pnav::-webkit-scrollbar{display:none;}
-  .ptab{font-size:.58rem;padding:10px 14px;white-space:nowrap;}
-  .proj-scene-wrap{height:160px;}
-  .ppanel.active{grid-template-columns:1fr;gap:28px;padding-top:28px;}
-  .proj-title{font-size:1.1rem;}
-  .proj-block{font-size:.88rem;padding:10px 12px;}
-  .feat-list li{font-size:.88rem;}
-  .metric-block{position:static;margin-top:0;}
-  .tech-tags{gap:5px;}
-  .tech{font-size:.52rem;padding:3px 9px;}
-  .cve-desc{font-size:.85rem;}
+  /* ── PROJECTS : masquer tabs/scene, afficher accordion ── */
+  .pnav{display:none;}
+  .proj-scene-wrap{display:none;}
+  .ppanel{display:none !important;}
+
+  /* Cards accordion */
+  .m-proj-cards{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
+  .m-proj-card{
+    border:1px solid var(--border);
+    background:var(--bg2);
+    overflow:hidden;
+  }
+  .m-proj-card-header{
+    display:flex;align-items:center;gap:14px;
+    padding:16px 18px;
+    cursor:pointer;
+    transition:background .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .m-proj-card-header:active{background:rgba(0,245,255,.04);}
+  .m-proj-num{
+    font-family:'Orbitron',monospace;
+    font-size:.65rem;font-weight:700;
+    color:var(--dim);
+    flex-shrink:0;
+    min-width:28px;
+  }
+  .m-proj-info{flex:1;min-width:0;}
+  .m-proj-name{
+    font-family:'Orbitron',monospace;
+    font-size:.82rem;font-weight:700;
+    color:#fff;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    margin-bottom:4px;
+  }
+  .m-proj-kpi{
+    font-family:'Share Tech Mono',monospace;
+    font-size:.62rem;letter-spacing:1px;
+    color:var(--cyan);
+  }
+  .m-proj-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .m-proj-status{
+    font-family:'Share Tech Mono',monospace;
+    font-size:.52rem;letter-spacing:1px;
+    padding:3px 8px;border:1px solid;
+    text-transform:uppercase;
+  }
+  .m-proj-status.done{color:var(--green);border-color:rgba(0,255,136,.35);}
+  .m-proj-status.wip{color:var(--yellow);border-color:rgba(255,214,10,.35);}
+  .m-proj-chevron{
+    color:var(--dim);font-size:.75rem;
+    transition:transform .25s ease;
+    flex-shrink:0;
+  }
+  .m-proj-card.open .m-proj-chevron{transform:rotate(180deg);}
+  .m-proj-card.open .m-proj-card-header{background:rgba(0,245,255,.03);}
+  .m-proj-card.open{border-color:rgba(0,245,255,.25);}
+
+  .m-proj-body{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s cubic-bezier(.4,0,.2,1);
+  }
+  .m-proj-card.open .m-proj-body{max-height:1200px;}
+  .m-proj-body-inner{padding:0 18px 20px;}
+
+  .m-proj-body-inner .proj-sec-lbl{font-family:'Share Tech Mono',monospace;font-size:.54rem;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-bottom:7px;}
+  .m-proj-body-inner .proj-block{font-size:.87rem;line-height:1.8;color:var(--dim2);padding:10px 12px;border-left:2px solid var(--border);}
+  .m-proj-body-inner .feat-list li{font-size:.86rem;line-height:1.75;}
+  .m-proj-body-inner .proj-sec{margin-bottom:18px;}
+  .m-proj-body-inner .tech-tags{gap:5px;margin-top:14px;}
+  .m-proj-body-inner .tech{font-size:.52rem;padding:3px 9px;}
+
+  /* Metric inline dans le body */
+  .m-proj-metrics{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin-bottom:16px;padding:12px 0;
+    border-top:1px solid var(--border2);
+    border-bottom:1px solid var(--border2);
+  }
+  .m-proj-metric-item{
+    display:flex;flex-direction:column;align-items:center;
+    padding:8px 12px;
+    background:var(--bg3);
+    flex:1;min-width:80px;
+  }
+  .m-proj-metric-val{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--cyan);}
+  .m-proj-metric-val.g{color:var(--green);}
+  .m-proj-metric-val.r{color:var(--pink);}
+  .m-proj-metric-val.y{color:var(--yellow);}
+  .m-proj-metric-lbl{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:1px;color:var(--dim);margin-top:3px;text-align:center;text-transform:uppercase;}
 
   /* ── SKILLS ── */
-  .sgrid{grid-template-columns:1fr;gap:14px;margin-top:36px;}
+  .sgrid{grid-template-columns:1fr;gap:12px;margin-top:32px;}
   .sb{padding:20px;}
   .skn{font-size:.88rem;}
   .sb-y{grid-column:span 1!important;}
   .sb-y > div[style]{grid-template-columns:repeat(2,1fr)!important;}
 
   /* ── CONTACT ── */
-  .cwrap{margin:36px auto 0;padding:0;}
+  .cwrap{margin:0 auto;padding:0;text-align:left;}
+  .cwrap .tag,.cwrap .h2{text-align:left !important;}
   .ccgrid{grid-template-columns:1fr;gap:10px;}
   .cc{padding:14px 16px;}
   .csub{font-size:.88rem;}
+  .avail{margin-bottom:20px;}
 
-  /* Footer */
+  /* ── Footer ── */
   div[style*="position:fixed;bottom:0"]{padding:8px 20px!important;}
   div[style*="position:fixed;bottom:0"] span{font-size:.46rem!important;letter-spacing:1px!important;}
 }
@@ -304,17 +423,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   </button>
 </nav>
 
-<!-- Mobile nav overlay -->
-<div class="mobile-nav-overlay" id="mobileNav">
-  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+<!-- Mobile drawer nav -->
+<div class="mobile-drawer" id="mobileDrawer">
   <button class="mnav-btn active" data-mnav="home">Accueil</button>
-  <div class="mnav-sep"></div>
   <button class="mnav-btn" data-mnav="about">Profil</button>
-  <div class="mnav-sep"></div>
   <button class="mnav-btn" data-mnav="projects">Projets</button>
-  <div class="mnav-sep"></div>
   <button class="mnav-btn" data-mnav="skills">Compétences</button>
-  <div class="mnav-sep"></div>
   <button class="mnav-btn" data-mnav="contact">Contact</button>
 </div>
 
@@ -968,10 +1082,176 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
       </div>
     </div>
 
+    <!-- ── Cards accordion (mobile uniquement, masquées sur desktop) ── -->
+    <div class="m-proj-cards">
+
+      <div class="m-proj-card">
+        <div class="m-proj-card-header">
+          <span class="m-proj-num">01</span>
+          <div class="m-proj-info">
+            <div class="m-proj-name">Firmware IoT · TP-Link ★</div>
+            <div class="m-proj-kpi">3 CVE publiés · CVSS 7.5–8.2</div>
+          </div>
+          <div class="m-proj-right">
+            <span class="m-proj-status done">Terminé</span>
+            <span class="m-proj-chevron">▾</span>
+          </div>
+        </div>
+        <div class="m-proj-body">
+          <div class="m-proj-body-inner">
+            <div class="m-proj-metrics">
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val r">3</span><span class="m-proj-metric-lbl">CVE publiés</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val">8.2</span><span class="m-proj-metric-lbl">CVSS max</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">15+</span><span class="m-proj-metric-lbl">Fonctions MIPS</span></div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Problème</div>
+              <div class="proj-block">Des centaines de millions de routeurs sans audit. Un routeur compromis = interception réseau totale, empoisonnement DNS, persistance.</div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Solution</div>
+              <div class="proj-block">Reverse engineering complet — binwalk, <strong>décompilation MIPS dans Ghidra</strong>, 14 endpoints cartographiés, framework d'exploitation Python. Résultat : <strong>3 CVE TP-Link</strong>.</div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech hl">Ghidra</span><span class="tech hl">binwalk</span><span class="tech">MIPS Assembly</span><span class="tech">Burp Suite</span><span class="tech">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-proj-card">
+        <div class="m-proj-card-header">
+          <span class="m-proj-num">02</span>
+          <div class="m-proj-info">
+            <div class="m-proj-name">Proxy IA Sécurisé</div>
+            <div class="m-proj-kpi">&gt;95% détection · &lt;50ms latence</div>
+          </div>
+          <div class="m-proj-right">
+            <span class="m-proj-status done">Terminé</span>
+            <span class="m-proj-chevron">▾</span>
+          </div>
+        </div>
+        <div class="m-proj-body">
+          <div class="m-proj-body-inner">
+            <div class="m-proj-metrics">
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">&gt;95%</span><span class="m-proj-metric-lbl">Détection</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val">&lt;50ms</span><span class="m-proj-metric-lbl">Latence</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val r">15+</span><span class="m-proj-metric-lbl">Types attaques</span></div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Problème</div>
+              <div class="proj-block">Déploiements LLM en entreprise sans protection : injection de prompts, jailbreaks, exfiltration IBAN/clés API.</div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Solution</div>
+              <div class="proj-block">Proxy transparent interceptant tout le trafic LLM. <strong>15+ types d'attaques</strong> bloqués, masquage PII automatique, dashboard ELK forensique.</div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech hl">Python</span><span class="tech hl">FastAPI</span><span class="tech hl">Docker</span><span class="tech">ELK Stack</span><span class="tech">DLP / PII</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-proj-card">
+        <div class="m-proj-card-header">
+          <span class="m-proj-num">03</span>
+          <div class="m-proj-info">
+            <div class="m-proj-name">Détecteur Ingénierie Sociale</div>
+            <div class="m-proj-kpi">6 principes Cialdini · Temps réel</div>
+          </div>
+          <div class="m-proj-right">
+            <span class="m-proj-status wip">En cours</span>
+            <span class="m-proj-chevron">▾</span>
+          </div>
+        </div>
+        <div class="m-proj-body">
+          <div class="m-proj-body-inner">
+            <div class="m-proj-metrics">
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">6</span><span class="m-proj-metric-lbl">Principes</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val">3</span><span class="m-proj-metric-lbl">Vecteurs</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">Auto</span><span class="m-proj-metric-lbl">Remédiation</span></div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Problème</div>
+              <div class="proj-block">&gt;90% des violations débutent par ingénierie sociale. Les outils existants ne comprennent pas les dynamiques de manipulation psychologique.</div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Solution</div>
+              <div class="proj-block">Pipeline NLP détectant phishing/manipulation sur email, chat et voix via <strong>modèle Cialdini</strong>. Réponse automatisée proportionnelle au score.</div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech hl">FastAPI</span><span class="tech hl">Celery</span><span class="tech">NLP</span><span class="tech">Whisper ASR</span><span class="tech">MITRE ATT&amp;CK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-proj-card">
+        <div class="m-proj-card-header">
+          <span class="m-proj-num">04</span>
+          <div class="m-proj-info">
+            <div class="m-proj-name">Analyseur Réseau SOC</div>
+            <div class="m-proj-kpi">5 000 pkt/s · 8 catégories d'anomalies</div>
+          </div>
+          <div class="m-proj-right">
+            <span class="m-proj-status done">Terminé</span>
+            <span class="m-proj-chevron">▾</span>
+          </div>
+        </div>
+        <div class="m-proj-body">
+          <div class="m-proj-body-inner">
+            <div class="m-proj-metrics">
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">5k/s</span><span class="m-proj-metric-lbl">Paquets</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val">&lt;2%</span><span class="m-proj-metric-lbl">Faux positifs</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val">3</span><span class="m-proj-metric-lbl">API Threat Intel</span></div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Solution</div>
+              <div class="proj-block">Analyseur auto-hébergé capturant 5 000 pkt/s, enrichissement <strong>AbuseIPDB + VirusTotal + Shodan</strong>, dashboard SOC live, daemon systemd 24h/24.</div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech hl">Python · Scapy</span><span class="tech hl">Flask · SocketIO</span><span class="tech">AbuseIPDB</span><span class="tech">Shodan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-proj-card">
+        <div class="m-proj-card-header">
+          <span class="m-proj-num">05</span>
+          <div class="m-proj-info">
+            <div class="m-proj-name">Auditeur Extensions Nav.</div>
+            <div class="m-proj-kpi">95/100 risque · 100K€ RGPD évitée</div>
+          </div>
+          <div class="m-proj-right">
+            <span class="m-proj-status done">Terminé</span>
+            <span class="m-proj-chevron">▾</span>
+          </div>
+        </div>
+        <div class="m-proj-body">
+          <div class="m-proj-body-inner">
+            <div class="m-proj-metrics">
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val r">95</span><span class="m-proj-metric-lbl">Score risque</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val y">500</span><span class="m-proj-metric-lbl">Postes</span></div>
+              <div class="m-proj-metric-item"><span class="m-proj-metric-val g">100K€</span><span class="m-proj-metric-lbl">RGPD évitée</span></div>
+            </div>
+            <div class="proj-sec">
+              <div class="proj-sec-lbl">Solution</div>
+              <div class="proj-block">Agent multiplateforme — <strong>analyse AST 50+ patterns</strong>, croisement VirusTotal, scoring 0-100, désactivation automatique. Validé sur 500 postes.</div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech hl">Python · Flask</span><span class="tech hl">esprima AST</span><span class="tech">VirusTotal API</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /m-proj-cards -->
+
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════ SKILLS ══ -->
 <div class="page" id="page-skills">
   <div class="pi">
     <span class="tag">Expertise</span>
@@ -1086,9 +1366,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 
 <script>
 (function(){
+  var isMobile = function(){ return window.innerWidth <= 768; };
+
   /* ── Cursor custom (desktop uniquement) ── */
   var cur=document.getElementById("cur"),ring=document.getElementById("ring"),mx=0,my=0,rx=0,ry=0;
-  var isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  var isTouchDevice=('ontouchstart' in window)||navigator.maxTouchPoints>0;
   if(!isTouchDevice){
     document.addEventListener("mousemove",function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+"px";cur.style.top=my+"px";});
     (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(anim);})();
@@ -1098,15 +1380,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
     });
   }
 
-  /* ── Navigation principale ── */
+  /* ══════════════════════════════════════
+     DESKTOP — navigation par pages (inchangé)
+  ══════════════════════════════════════ */
   function go(id){
+    if(isMobile()) return; /* ignoré sur mobile */
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.remove("active");});
-    document.querySelectorAll(".mnav-btn").forEach(function(b){b.classList.remove("active");});
     var pg=document.getElementById("page-"+id);
     if(pg){pg.classList.add("active");pg.scrollTop=0;}
     document.querySelectorAll(".nav-btn[data-nav='"+id+"']").forEach(function(b){b.classList.add("active");});
-    document.querySelectorAll(".mnav-btn[data-mnav='"+id+"']").forEach(function(b){b.classList.add("active");});
     if(id==="skills"){setTimeout(function(){document.querySelectorAll(".skfill").forEach(function(b){b.style.width=b.getAttribute("data-w")+"%";});},120);}
   }
 
@@ -1114,35 +1397,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
     el.addEventListener("click",function(){go(this.getAttribute("data-nav"));});
   });
 
-  /* ── Hamburger ── */
-  var hamburger=document.getElementById("hamburger");
-  var mobileNav=document.getElementById("mobileNav");
-  var mobileNavClose=document.getElementById("mobileNavClose");
-
-  function openMenu(){
-    hamburger.classList.add("open");
-    mobileNav.classList.add("open");
-    document.body.style.overflow="hidden";
-  }
-  function closeMenu(){
-    hamburger.classList.remove("open");
-    mobileNav.classList.remove("open");
-    document.body.style.overflow="";
-  }
-
-  hamburger.addEventListener("click",function(){
-    mobileNav.classList.contains("open") ? closeMenu() : openMenu();
-  });
-  mobileNavClose.addEventListener("click",closeMenu);
-
-  document.querySelectorAll(".mnav-btn[data-mnav]").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      go(this.getAttribute("data-mnav"));
-      closeMenu();
-    });
-  });
-
-  /* ── Tabs projets ── */
+  /* Tabs projets (desktop) */
   document.querySelectorAll(".ptab").forEach(function(tab){
     tab.addEventListener("click",function(){
       var idx=this.getAttribute("data-proj");
@@ -1157,7 +1412,78 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
     });
   });
 
-  go("home");
+  /* Init desktop */
+  if(!isMobile()) go("home");
+
+  /* ══════════════════════════════════════
+     MOBILE — hamburger drawer
+  ══════════════════════════════════════ */
+  var hamburger=document.getElementById("hamburger");
+  var drawer=document.getElementById("mobileDrawer");
+
+  function toggleDrawer(){
+    var isOpen=drawer.classList.contains("open");
+    hamburger.classList.toggle("open",!isOpen);
+    drawer.classList.toggle("open",!isOpen);
+  }
+  function closeDrawer(){
+    hamburger.classList.remove("open");
+    drawer.classList.remove("open");
+  }
+
+  hamburger.addEventListener("click",toggleDrawer);
+
+  /* Liens du drawer → scroll smooth vers la section */
+  document.querySelectorAll(".mnav-btn[data-mnav]").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var id=this.getAttribute("data-mnav");
+      var target=document.getElementById("page-"+id);
+      if(target){
+        /* offset nav 56px */
+        var y=target.getBoundingClientRect().top+window.scrollY-56;
+        window.scrollTo({top:y,behavior:"smooth"});
+      }
+      /* Mettre à jour l'état actif dans le drawer */
+      document.querySelectorAll(".mnav-btn").forEach(function(b){b.classList.remove("active");});
+      this.classList.add("active");
+      closeDrawer();
+    });
+  });
+
+  /* Fermer le drawer en cliquant hors */
+  document.addEventListener("click",function(e){
+    if(drawer.classList.contains("open")&&!drawer.contains(e.target)&&e.target!==hamburger&&!hamburger.contains(e.target)){
+      closeDrawer();
+    }
+  });
+
+  /* Skills bars au scroll sur mobile */
+  var skillsTriggered=false;
+  window.addEventListener("scroll",function(){
+    if(!isMobile()||skillsTriggered) return;
+    var skillsSection=document.getElementById("page-skills");
+    if(!skillsSection) return;
+    var rect=skillsSection.getBoundingClientRect();
+    if(rect.top<window.innerHeight*0.8){
+      document.querySelectorAll(".skfill").forEach(function(b){b.style.width=b.getAttribute("data-w")+"%";});
+      skillsTriggered=true;
+    }
+  },{passive:true});
+
+  /* ══════════════════════════════════════
+     MOBILE — accordion projets
+  ══════════════════════════════════════ */
+  document.querySelectorAll(".m-proj-card").forEach(function(card){
+    var header=card.querySelector(".m-proj-card-header");
+    header.addEventListener("click",function(){
+      var wasOpen=card.classList.contains("open");
+      /* Fermer tous les autres */
+      document.querySelectorAll(".m-proj-card.open").forEach(function(c){c.classList.remove("open");});
+      /* Toggle celui-ci */
+      if(!wasOpen) card.classList.add("open");
+    });
+  });
+
 })();
 </script>
 
