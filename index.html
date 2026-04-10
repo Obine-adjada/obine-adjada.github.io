@@ -47,6 +47,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 @keyframes data-flow{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}
 @keyframes glitch-clip{0%,100%{clip-path:inset(0 0 95% 0)}20%{clip-path:inset(30% 0 50% 0)}40%{clip-path:inset(70% 0 10% 0)}60%{clip-path:inset(10% 0 70% 0)}80%{clip-path:inset(50% 0 30% 0)}}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--dim);}::-webkit-scrollbar-thumb:hover{background:var(--cyan);}
+#page-home{display:flex;align-items:center;}
 .burger{display:none;}
 .mob-overlay{display:none;}
 @media(max-width:768px){.burger{display:flex;}.mob-overlay{display:flex;}}
@@ -294,8 +295,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   }
 
   /* ══ SECTION CARDS MOBILE ══ */
-  /* Profil */
-  .agrid{grid-template-columns:1fr;gap:28px;}
+  /* Profil — expérience pro en premier sur mobile */
+  .agrid{display:flex;flex-direction:column;}
+  .about-col-right{order:1;}
+  .about-col-left{order:2;}
+
+  .agrid{gap:28px;}
   .h2{font-size:1.35rem;}
   .tag{font-size:.55rem;}
   .ablock p,.eli li,.feat-list li,.proj-block{font-size:.9rem;line-height:1.8;}
@@ -359,6 +364,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   }
   div[style*="position:fixed;bottom:0"] span{font-size:.44rem;}
 }
+
+.about-col-left{order:1;}
+.about-col-right{order:2;}
 </style>
 </head>
 <body>
@@ -432,14 +440,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
     <span class="tag">Profil</span>
     <h2 class="h2">Profil &amp; <span>Expérience</span></h2>
     <div class="agrid">
-      <div>
+      <div class="about-col-left">
         <div class="ablock">
           <p>Étudiante en Master 1 à l'<strong>Université d'Artois</strong>, titulaire d'une <em>Licence Cybersécurité Mention Bien</em> (ESGIS, Bénin) et de deux stages terrain, dont un poste d'analyste SOC chez <strong>Orange France</strong>.</p>
           <p>Ma philosophie : <strong>détecter sans remédier ne sert à rien.</strong> Chaque projet suit un cycle complet Analyser &#8594; Détecter &#8594; Remédier, ciblant des vecteurs d'attaque réels auxquels les entreprises font face aujourd'hui.</p>
           <p>J'ai publié <strong>3 CVE chez TP-Link</strong> après reverse engineering de firmware, développé un proxy protégeant les déploiements LLM contre 15+ types d'attaques en production, et conçu des outils ayant évité des violations RGPD à plusieurs centaines de milliers d'euros.</p>
           <p>Je recherche une <strong>alternance en cybersécurité</strong> à partir de <strong>septembre 2026</strong>, rythme 3 semaines entreprise / 1 semaine école, dans les domaines SOC, pentest, threat intelligence ou ingénierie sécurité. <strong>Mobile sur toute la France.</strong></p>
         </div>
-
         <div style="margin-top:36px;">
           <h3 style="font-family:'Orbitron',monospace;font-size:.92rem;color:#fff;margin-bottom:20px;">Formation</h3>
           <div class="edu"><div class="eduy">2025 · EN COURS</div><div class="edus">Master 1 Informatique · Université d'Artois, Lens</div><div class="edud">Data science · S&#233;curit&#233; · IA · Assembleur · R&#233;seaux</div></div>
@@ -460,7 +467,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
           </div>
         </div>
       </div>
-      <div>
+      <div class="about-col-right">
         <h3 style="font-family:'Orbitron',monospace;font-size:.92rem;color:#fff;margin-bottom:20px;">Expérience professionnelle</h3>
         <div class="eitem">
           <div class="edate">AVRIL · JUIN 2025</div>
