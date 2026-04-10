@@ -295,10 +295,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
   }
 
   /* ══ SECTION CARDS MOBILE ══ */
-  /* Profil — expérience pro en premier sur mobile */
+  /* Profil — ordre sur mobile : expérience, formation, texte, plateformes, langues */
   .agrid{display:flex;flex-direction:column;}
   .about-col-right{order:1;}
-  .about-col-left{order:2;}
+  .about-formation{order:2;}
+  .about-text{order:3;}
+  .about-col-left > div:nth-child(3){order:4;}
+  .about-col-left > div:nth-child(4){order:5;}
+  .about-col-left{order:2;display:flex;flex-direction:column;}
 
   .agrid{gap:28px;}
   .h2{font-size:1.35rem;}
@@ -441,13 +445,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
     <h2 class="h2">Profil &amp; <span>Expérience</span></h2>
     <div class="agrid">
       <div class="about-col-left">
-        <div class="ablock">
+        <div class="ablock about-text">
           <p>Étudiante en Master 1 à l'<strong>Université d'Artois</strong>, titulaire d'une <em>Licence Cybersécurité Mention Bien</em> (ESGIS, Bénin) et de deux stages terrain, dont un poste d'analyste SOC chez <strong>Orange France</strong>.</p>
           <p>Ma philosophie : <strong>détecter sans remédier ne sert à rien.</strong> Chaque projet suit un cycle complet Analyser &#8594; Détecter &#8594; Remédier, ciblant des vecteurs d'attaque réels auxquels les entreprises font face aujourd'hui.</p>
           <p>J'ai publié <strong>3 CVE chez TP-Link</strong> après reverse engineering de firmware, développé un proxy protégeant les déploiements LLM contre 15+ types d'attaques en production, et conçu des outils ayant évité des violations RGPD à plusieurs centaines de milliers d'euros.</p>
           <p>Je recherche une <strong>alternance en cybersécurité</strong> à partir de <strong>septembre 2026</strong>, rythme 3 semaines entreprise / 1 semaine école, dans les domaines SOC, pentest, threat intelligence ou ingénierie sécurité. <strong>Mobile sur toute la France.</strong></p>
         </div>
-        <div style="margin-top:36px;">
+        <div class="about-formation" style="margin-top:36px;">
           <h3 style="font-family:'Orbitron',monospace;font-size:.92rem;color:#fff;margin-bottom:20px;">Formation</h3>
           <div class="edu"><div class="eduy">2025 · EN COURS</div><div class="edus">Master 1 Informatique · Université d'Artois, Lens</div><div class="edud">Data science · S&#233;curit&#233; · IA · Assembleur · R&#233;seaux</div></div>
           <div class="edu"><div class="eduy">2024 · 2025</div><div class="edus">Licence Informatique · Université d'Artois, Lens</div><div class="edud">C · C# · Java · Shell · Haskell · PHP</div></div>
@@ -980,13 +984,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
         <div class="skrow"><div class="skdot pu"></div><span class="skn">TCP/IP / Firewall / VPN / Cisco</span><div class="skbar"><div class="skfill pu" data-w="80"></div></div></div>
         <div class="skrow"><div class="skdot pu"></div><span class="skn">systemd / QEMU</span><div class="skbar"><div class="skfill pu" data-w="75"></div></div></div>
       </div>
-      <div class="sb sb-y" style="grid-column:1 / -1"><div class="sbtit">// Certifications &amp; Plateformes</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:4px;" class="cert-grid-4">
-          <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--yellow);margin-bottom:5px;">ISC&#178;</div><div style="font-size:.83rem;color:var(--text);">CC Certification</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--yellow);margin-top:4px;">&#9889; EN COURS</div></div>
-          <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:5px;">THM</div><div style="font-size:.83rem;color:var(--text);">TryHackMe</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--green);margin-top:4px;">&#9679; ACTIF</div></div>
-          <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--cyan);margin-bottom:5px;">HTB</div><div style="font-size:.83rem;color:var(--text);">HackTheBox</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--green);margin-top:4px;">&#9679; ACTIF</div></div>
-          <div style="padding:16px;background:var(--bg3);border:1px solid var(--border2);"><div style="font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--pink);margin-bottom:5px;">CVE ×3</div><div style="font-size:.83rem;color:var(--text);">NVD · CVSS 7.5–8.2</div><div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--pink);margin-top:4px;">&#9679; PUBLIÉS</div></div>
-        </div>
+      <div class="sb sb-y"><div class="sbtit">// Certifications &amp; Plateformes</div>
+        <div class="skrow"><div class="skdot" style="background:var(--yellow);"></div><span class="skn">ISC² — CC Certification</span><div style="font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--yellow);white-space:nowrap;">&#9889; EN COURS</div></div>
+        <div class="skrow"><div class="skdot" style="background:var(--green);"></div><span class="skn">TryHackMe</span><div style="font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--green);white-space:nowrap;">&#9679; ACTIF</div></div>
+        <div class="skrow"><div class="skdot" style="background:var(--cyan);"></div><span class="skn">HackTheBox</span><div style="font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--green);white-space:nowrap;">&#9679; ACTIF</div></div>
+        <div class="skrow"><div class="skdot" style="background:var(--pink);"></div><span class="skn">CVE ×3 · NVD</span><div style="font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--pink);white-space:nowrap;">CVSS 7.5–8.2</div></div>
       </div>
     </div>
   </div>
