@@ -4,23 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Obine Adjada · Cybersécurité</title>
-<meta name="description" content="Étudiante M1 Cybersécurité. 3 CVEs reproduites au NVD, moteur de scénarios Purple Team, top 1% TryHackMe. Alternance septembre 2026.">
+<meta name="description" content="Étudiante M1 Cybersécurité. Détection SOC et offensif : 3 CVEs reproduites au NVD, moteur Purple Team, top 1% TryHackMe. Alternance SOC, détection ou pentest, septembre 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0e14;
-  --surface:#101722;
-  --surface-2:#141d2b;
-  --border:#1e2a3a;
-  --text:#e6edf3;
-  --muted:#8b98a8;
-  --cyan:#22d3ee;
-  --cyan-dim:rgba(34,211,238,.12);
-  --font-display:'Chakra Petch',sans-serif;
-  --font-body:'IBM Plex Sans',sans-serif;
-  --font-mono:'IBM Plex Mono',monospace;
+  --bg:#0a0e14;--surface:#101722;--surface-2:#141d2b;--border:#1e2a3a;
+  --text:#e6edf3;--muted:#8b98a8;--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,.12);
+  --font-display:'Chakra Petch',sans-serif;--font-body:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -29,53 +21,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
 a{color:var(--cyan);text-decoration:none}
 a:hover{text-decoration:underline}
 a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
-
 .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
 
-/* ---------- NAV ---------- */
 nav{position:sticky;top:0;z-index:50;background:rgba(10,14,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{font-family:var(--font-mono);font-size:.95rem;color:var(--text)}
 .logo span{color:var(--cyan)}
 .nav-links{display:flex;gap:24px;align-items:center;list-style:none}
-.nav-links a{color:var(--muted);font-size:.9rem;text-decoration:none}
+.nav-links a{color:var(--muted);font-size:.9rem}
 .nav-links a:hover{color:var(--cyan)}
 .lang-toggle{font-family:var(--font-mono);font-size:.8rem;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 10px;border-radius:4px;cursor:pointer}
 .lang-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
 .lang-toggle b{color:var(--cyan);font-weight:500}
 .burger{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer}
 
-/* ---------- HERO ---------- */
 .hero{padding:88px 0 72px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
 .hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.12;font-weight:700;margin-bottom:20px}
 .hero h1 em{font-style:normal;color:var(--cyan)}
 .hero p.lede{color:var(--muted);font-size:1.05rem;max-width:52ch;margin-bottom:28px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;font-family:var(--font-mono);font-size:.85rem;padding:11px 20px;border-radius:5px;border:1px solid var(--cyan);text-decoration:none}
+.btn{display:inline-block;font-family:var(--font-mono);font-size:.85rem;padding:11px 20px;border-radius:5px;border:1px solid var(--cyan)}
 .btn-primary{background:var(--cyan);color:var(--bg);font-weight:500}
 .btn-primary:hover{background:#4fe0f5;text-decoration:none}
 .btn-ghost{color:var(--cyan)}
 .btn-ghost:hover{background:var(--cyan-dim);text-decoration:none}
 
-/* terminal card */
 .term{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-family:var(--font-mono);font-size:.8rem;box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .term-bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface-2)}
 .term-bar i{width:10px;height:10px;border-radius:50%;background:var(--border)}
 .term-bar i:first-child{background:#2a3a4d}
 .term-body{padding:18px 18px 22px;line-height:1.75}
-.term-body .p{color:var(--cyan)}
 .term-body .k{color:var(--muted)}
 .term-body .v{color:var(--text)}
 .term-body .ok{color:#4ade80}
+.term-body .p{color:var(--cyan)}
 
-/* ---------- SECTIONS ---------- */
 section{padding:72px 0;border-top:1px solid var(--border)}
 .sec-head{margin-bottom:40px}
 .sec-head .eyebrow{margin-bottom:8px}
 .sec-head h2{font-family:var(--font-display);font-size:1.7rem;font-weight:600}
 
-/* ---------- PROJECTS: advisory cards ---------- */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .adv{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s}
 .adv:hover{border-color:var(--cyan)}
@@ -87,26 +73,23 @@ section{padding:72px 0;border-top:1px solid var(--border)}
 .adv-stack{font-family:var(--font-mono);font-size:.74rem;color:var(--cyan);opacity:.85}
 .adv a.more{font-family:var(--font-mono);font-size:.8rem}
 
-/* ---------- WRITE-UPS ---------- */
 .wu-list{display:flex;flex-direction:column}
 .wu{display:grid;grid-template-columns:150px 1fr auto;gap:20px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--border)}
 .wu:first-child{border-top:1px solid var(--border)}
 .wu-date{font-family:var(--font-mono);font-size:.78rem;color:var(--muted)}
-.wu h3{font-size:1rem;font-weight:600;font-family:var(--font-body)}
+.wu h3{font-size:1rem;font-weight:600}
 .wu p{color:var(--muted);font-size:.88rem;margin-top:4px}
 .wu a.read{font-family:var(--font-mono);font-size:.8rem;white-space:nowrap}
 .wu-note{margin-top:22px;font-size:.85rem;color:var(--muted);border-left:2px solid var(--cyan);padding-left:14px}
 
-/* ---------- TIMELINE ---------- */
 .tl{position:relative;margin-left:8px;padding-left:32px;border-left:1px solid var(--border)}
 .tl-item{position:relative;padding-bottom:36px}
 .tl-item:last-child{padding-bottom:0}
 .tl-item::before{content:"";position:absolute;left:-37px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
 .tl-date{font-family:var(--font-mono);font-size:.76rem;color:var(--cyan);letter-spacing:.06em}
-.tl-item h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin:4px 0 4px}
+.tl-item h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin:4px 0}
 .tl-item p{color:var(--muted);font-size:.9rem;max-width:64ch}
 
-/* ---------- SKILLS ---------- */
 .sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
 .sk{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
 .sk h3{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
@@ -114,26 +97,42 @@ section{padding:72px 0;border-top:1px solid var(--border)}
 .sk li{font-size:.9rem;color:var(--muted);padding:3px 0}
 .sk li b{color:var(--text);font-weight:500}
 
-/* ---------- CONTACT ---------- */
 .contact-box{text-align:center;padding:16px 0}
 .contact-box p{color:var(--muted);max-width:56ch;margin:0 auto 26px}
 .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
 footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
 
-/* reveal */
+.cv-overlay{position:fixed;inset:0;z-index:100;background:rgba(5,8,12,.78);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease}
+.cv-overlay.open{opacity:1;visibility:visible}
+.cv-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;max-width:640px;width:100%;padding:30px;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(12px) scale(.98);transition:transform .22s ease}
+.cv-overlay.open .cv-modal{transform:none}
+.cv-modal .eyebrow{margin-bottom:6px}
+.cv-modal h3{font-family:var(--font-display);font-size:1.35rem;font-weight:600;margin-bottom:6px}
+.cv-modal .sub{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+.cv-close{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--muted);font-size:1.5rem;line-height:1;cursor:pointer;padding:4px}
+.cv-close:hover{color:var(--cyan)}
+.cv-opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cv-opt{display:flex;flex-direction:column;gap:8px;text-align:left;background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:20px;
+  text-decoration:none;transition:border-color .18s ease,transform .18s ease}
+.cv-opt:hover{border-color:var(--cyan);transform:translateY(-2px);text-decoration:none}
+.cv-opt .ic{width:30px;height:30px;color:var(--cyan)}
+.cv-opt strong{font-family:var(--font-display);font-size:1.02rem;color:var(--text);font-weight:600}
+.cv-opt span{color:var(--muted);font-size:.84rem;line-height:1.45}
+.cv-opt .dl{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);margin-top:auto;padding-top:6px}
+
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
-}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
 
-/* ---------- RESPONSIVE ---------- */
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;padding:56px 0 48px}
   .grid-2{grid-template-columns:1fr}
   .wu{grid-template-columns:1fr;gap:6px}
+  .cv-opts{grid-template-columns:1fr}
+  .cv-modal{padding:24px}
   .nav-links{position:fixed;inset:60px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:20px;display:none}
   .nav-links.open{display:flex}
   .burger{display:block}
@@ -151,7 +150,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
       <li><a href="#parcours" data-i18n="nav_timeline">Parcours</a></li>
       <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-      <li><a href="assets/CV_Obine_ADJADA.pdf" download data-i18n="nav_cv">CV ↓</a></li>
+      <li><a href="#" data-cv-open data-i18n="nav_cv">CV ↓</a></li>
     </ul>
     <div style="display:flex;gap:12px;align-items:center">
       <button class="lang-toggle" id="langToggle" aria-label="Switch language"><b>FR</b> / EN</button>
@@ -162,22 +161,23 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
 
 <header class="hero wrap" id="top">
   <div>
-    <p class="eyebrow" data-i18n="hero_eyebrow">Étudiante M1 Cybersécurité · Université d'Artois</p>
-    <h1 data-i18n="hero_title">3 CVEs reproduites au NVD. Un lab purple team monté de zéro. <em>Top 1% mondial TryHackMe.</em></h1>
-    <p class="lede" data-i18n="hero_lede">Détection SOC (Splunk, Sentinel) et pentest chez Orange Cyberdefense, offensif aussi en lab. Je cherche une alternance en cybersécurité dès septembre 2026, rythme 3 semaines entreprise / 1 semaine école. Basée à Lens, mobile Hauts-de-France et national.</p>
+    <p class="eyebrow" data-i18n="hero_eyebrow">Étudiante M1 Cybersécurité · Pentest & SOC / Détection</p>
+    <h1 data-i18n="hero_title">Mon meilleur outil offensif, c'est <em>ma connaissance du bleu.</em></h1>
+    <p class="lede" data-i18n="hero_lede">Détection SOC (Splunk, Sentinel, règles Sigma) et offensif (pentest, reverse, exploitation). 3 CVEs reproduites au NVD, 5 mois chez Orange Cyberdefense en analyse d'alertes SIEM et tests d'intrusion, top 1% mondial TryHackMe. Je cherche une alternance en SOC, détection ou pentest dès septembre 2026, rythme 3 semaines entreprise / 1 semaine école. Basée à Lens, mobilité nationale.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projets" data-i18n="hero_cta1">Voir les projets</a>
-      <a class="btn btn-ghost" href="assets/CV_Obine_ADJADA.pdf" download data-i18n="hero_cta2">Télécharger le CV</a>
+      <a class="btn btn-ghost" href="#" data-cv-open data-i18n="hero_cta2">Télécharger le CV</a>
     </div>
   </div>
   <div class="term" aria-hidden="true">
     <div class="term-bar"><i></i><i></i><i></i></div>
     <div class="term-body">
       <div><span class="p">$</span> <span class="v">whoami --verbose</span></div>
-      <div><span class="k">profil</span>&nbsp;&nbsp;&nbsp;: <span class="v">purple team</span></div>
-      <div><span class="k">soc</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="v">Splunk · Sentinel · Wazuh</span></div>
-      <div><span class="k">offensif</span> : <span class="v">Ghidra · Binwalk · MITRE ATT&amp;CK</span></div>
-      <div><span class="k">thm</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="v">rank 3420 · 379 rooms · </span><span class="ok">top 1%</span></div>
+      <div><span class="k">profil</span>&nbsp;&nbsp;&nbsp;: <span class="v">SOC &amp; pentest</span></div>
+      <div><span class="k">détect.</span>&nbsp;: <span class="v">Splunk · Sentinel · Sigma · Wazuh</span></div>
+      <div><span class="k">offensif</span> : <span class="v">AD · web OWASP · Ghidra · Ligolo-ng</span></div>
+      <div><span class="k">cve</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="v">3 reproduites au NVD · </span><span class="ok">8.2 / 7.8 / 7.5</span></div>
+      <div><span class="k">thm</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="v">rank 1856 · 467 rooms · </span><span class="ok">top 1%</span></div>
       <div><span class="k">dispo</span>&nbsp;&nbsp;&nbsp;&nbsp;: <span class="ok">alternance 09/2026</span></div>
     </div>
   </div>
@@ -191,24 +191,24 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
     </div>
     <div class="grid-2">
       <article class="adv reveal">
-        <div class="adv-top"><span class="adv-id">PRJ-2025-001</span><span class="adv-tag" data-i18n="proj1_tag">Reverse / IoT</span></div>
-        <h3 data-i18n="proj1_h">Audit firmware IoT · 3 CVEs reproduites au NVD</h3>
-        <p data-i18n="proj1_p">Audit complet d'un routeur TP-Link : extraction du firmware avec Binwalk, reverse engineering MIPS sous Ghidra, reproduction et documentation de 3 CVEs référencées au NVD. Méthodologie détaillée, sans divulgation de détails exploitables.</p>
-        <span class="adv-stack">Binwalk · Ghidra · MIPS · NVD</span>
+        <div class="adv-top"><span class="adv-id">PRJ-2025-001</span><span class="adv-tag" data-i18n="proj1_tag">Purple Team</span></div>
+        <h3 data-i18n="proj1_h">Purple Team Scenario Engine</h3>
+        <p data-i18n="proj1_p">Moteur Python rejouant 8 TTPs MITRE ATT&amp;CK côté rouge (exploitation web, pentest AD, phishing, pivoting) et validant la détection côté bleu via règles Sigma sur Splunk et Wazuh. Boucle offensif/défensif automatisée : le projet qui résume mon profil.</p>
+        <span class="adv-stack">Python · MITRE ATT&amp;CK · Sigma · Splunk · Wazuh</span>
         <a class="more" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="proj_link">Voir sur GitHub →</a>
       </article>
       <article class="adv reveal">
-        <div class="adv-top"><span class="adv-id">PRJ-2025-002</span><span class="adv-tag" data-i18n="proj2_tag">Purple Team</span></div>
-        <h3 data-i18n="proj2_h">Purple Team Scenario Engine</h3>
-        <p data-i18n="proj2_p">Moteur de scénarios d'attaque en Python aligné MITRE ATT&amp;CK : exécution de techniques offensives et validation de la détection côté SIEM via règles Sigma sur Splunk et Wazuh. Boucle rouge/bleu automatisée de bout en bout.</p>
-        <span class="adv-stack">Python · MITRE ATT&amp;CK · Sigma · Splunk · Wazuh</span>
+        <div class="adv-top"><span class="adv-id">PRJ-2025-002</span><span class="adv-tag" data-i18n="proj2_tag">Reverse / IoT</span></div>
+        <h3 data-i18n="proj2_h">Audit firmware IoT · 3 CVEs reproduites au NVD</h3>
+        <p data-i18n="proj2_p">Audit offensif d'un routeur TP-Link : extraction firmware (Binwalk), reverse engineering MIPS et analyse de code bas niveau (Ghidra), reproduction et exploitation de 3 vulnérabilités critiques (CVSS 8.2 / 7.8 / 7.5), rapport structuré.</p>
+        <span class="adv-stack">Ghidra · Binwalk · Python · MIPS · NVD</span>
         <a class="more" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="proj_link">Voir sur GitHub →</a>
       </article>
       <article class="adv reveal">
         <div class="adv-top"><span class="adv-id">PRJ-2025-003</span><span class="adv-tag" data-i18n="proj3_tag">Sécurité IA</span></div>
         <h3 data-i18n="proj3_h">Secure AI Proxy</h3>
-        <p data-i18n="proj3_p">Proxy de sécurité pour applications LLM : détection de prompt injection et de contenus malveillants avec plus de 95% de détection, journalisation et supervision via la stack ELK.</p>
-        <span class="adv-stack">Python · ELK · LLM security</span>
+        <p data-i18n="proj3_p">Détection de prompt injection et de contenus malveillants en amont d'un LLM : plus de 95% de détection, 400+ requêtes/sec, supervision via la stack ELK.</p>
+        <span class="adv-stack">Python · FastAPI · ELK · Docker</span>
         <a class="more" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="proj_link">Voir sur GitHub →</a>
       </article>
     </div>
@@ -225,16 +225,16 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
       <article class="wu reveal">
         <span class="wu-date">2025</span>
         <div>
-          <h3 data-i18n="wu1_h">Audit firmware TP-Link : de Binwalk à la reproduction de CVE</h3>
-          <p data-i18n="wu1_p">Extraction, analyse statique MIPS sous Ghidra, reproduction contrôlée en lab de vulnérabilités référencées au NVD.</p>
+          <h3 data-i18n="wu1_h">Rejouer 8 TTPs ATT&amp;CK et valider la détection avec Sigma</h3>
+          <p data-i18n="wu1_p">Comment le Purple Team Scenario Engine enchaîne exploitation web, pentest AD, phishing et pivoting, puis vérifie que le SIEM lève bien l'alerte attendue.</p>
         </div>
         <a class="read" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="wu_read">Lire →</a>
       </article>
       <article class="wu reveal">
         <span class="wu-date">2025</span>
         <div>
-          <h3 data-i18n="wu2_h">Automatiser la validation de détection avec Sigma</h3>
-          <p data-i18n="wu2_p">Comment le Purple Team Scenario Engine rejoue des techniques ATT&amp;CK et vérifie que le SIEM lève bien l'alerte attendue.</p>
+          <h3 data-i18n="wu2_h">Audit firmware TP-Link : de Binwalk à la reproduction de CVE</h3>
+          <p data-i18n="wu2_p">Extraction, analyse statique MIPS sous Ghidra, reproduction contrôlée en lab de 3 vulnérabilités référencées au NVD.</p>
         </div>
         <a class="read" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="wu_read">Lire →</a>
       </article>
@@ -242,7 +242,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
         <span class="wu-date">2025</span>
         <div>
           <h3 data-i18n="wu3_h">Détecter la prompt injection en amont d'un LLM</h3>
-          <p data-i18n="wu3_p">Architecture du Secure AI Proxy, stratégie de détection et supervision des tentatives dans ELK.</p>
+          <p data-i18n="wu3_p">Architecture du Secure AI Proxy, stratégie de détection (>95%, 400+ req/sec) et supervision des tentatives dans ELK.</p>
         </div>
         <a class="read" href="https://github.com/Obine-adjada" target="_blank" rel="noopener" data-i18n="wu_read">Lire →</a>
       </article>
@@ -260,23 +260,33 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
     <div class="tl">
       <div class="tl-item reveal">
         <span class="tl-date" data-i18n="tl1_d">Sept. 2026 · objectif</span>
-        <h3 data-i18n="tl1_h">Alternance cybersécurité</h3>
-        <p data-i18n="tl1_p">SOC, pentest ou sécurité offensive. Rythme 3 semaines entreprise / 1 semaine école. Hauts-de-France et national.</p>
+        <h3 data-i18n="tl1_h">Alternance SOC, détection ou pentest</h3>
+        <p data-i18n="tl1_p">Rythme 3 semaines entreprise / 1 semaine école. Mobilité nationale.</p>
       </div>
       <div class="tl-item reveal">
         <span class="tl-date">2025 – 2026</span>
-        <h3 data-i18n="tl2_h">Master 1 Cybersécurité · Université d'Artois (Lens)</h3>
-        <p data-i18n="tl2_p">Cryptographie, sécurité réseau, analyse de vulnérabilités, projets pratiques. En parallèle : lab personnel et pratique CTF intensive.</p>
+        <h3 data-i18n="tl2_h">Master 1 Informatique, option Cybersécurité · Université d'Artois (Lens)</h3>
+        <p data-i18n="tl2_p">Détection, sécurité offensive, cryptographie, réseau. En parallèle : lab personnel et pratique CTF intensive.</p>
       </div>
       <div class="tl-item reveal">
-        <span class="tl-date">2025</span>
-        <h3 data-i18n="tl3_h">Stage · Orange Cyberdefense (SOC &amp; Pentest)</h3>
-        <p data-i18n="tl3_p">Côté SOC : détection d'alertes sur Splunk et Microsoft Sentinel, analyse de vulnérabilités avec scoring CVSS. Côté offensif : tests d'intrusion, reconnaissance et participation à des opérations Red Team, en environnement client réel.</p>
+        <span class="tl-date">Avr. 2025 – Août 2025 · 5 mois</span>
+        <h3 data-i18n="tl3_h">Stagiaire Cybersécurité (SOC &amp; Pentest) · Orange Cyberdefense (Massy)</h3>
+        <p data-i18n="tl3_p">Tests d'intrusion web (OWASP Top 10), infrastructure et Active Directory : reconnaissance, exploitation, post-exploitation. Détection SOC : analyse d'alertes SIEM (Splunk, Sentinel), qualification d'incidents, scoring CVSS, veille CVE/NVD/ANSSI. Compréhension des chaînes d'attaque des deux côtés. Développement d'outils Python/Bash d'automatisation.</p>
       </div>
       <div class="tl-item reveal">
-        <span class="tl-date">2023</span>
-        <h3 data-i18n="tl4_h">Stage DevOps · RightCom (Cotonou)</h3>
-        <p data-i18n="tl4_p">Première expérience professionnelle en environnement DevOps : automatisation, culture produit et travail en équipe internationale.</p>
+        <span class="tl-date">2024 – 2025</span>
+        <h3 data-i18n="tl4_h">Licence Informatique · Université d'Artois (Lens)</h3>
+        <p data-i18n="tl4_p">Fondamentaux systèmes, réseaux et développement.</p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-date">2023 · 3 mois</span>
+        <h3 data-i18n="tl5_h">Stagiaire DevOps &amp; Sécurité · RightCom (Cotonou)</h3>
+        <p data-i18n="tl5_p">Administration Linux, Docker, CI/CD, stack ELK, scripting Python/Bash en environnement cloud.</p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-date">2022 – 2023</span>
+        <h3 data-i18n="tl6_h">Licence Cybersécurité · ESGIS (Bénin)</h3>
+        <p data-i18n="tl6_p">Première spécialisation en cybersécurité.</p>
       </div>
     </div>
   </div>
@@ -290,39 +300,56 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
     </div>
     <div class="sk-grid">
       <div class="sk reveal">
-        <h3 data-i18n="sk1_h">Détection · SOC</h3>
+        <h3 data-i18n="sk1_h">Détection & SOC</h3>
         <ul>
-          <li><b>Splunk</b>, <b>Microsoft Sentinel</b>, <b>Wazuh</b></li>
-          <li><b>Sigma</b> (règles de détection)</li>
-          <li data-i18n="sk1_l3"><b>CVSS</b> · analyse de vulnérabilités</li>
-          <li><b>ELK</b> (supervision)</li>
+          <li>SIEM : <b>Splunk</b>, <b>Sentinel</b>, <b>Wazuh</b></li>
+          <li>Règles <b>Sigma</b>, MITRE ATT&amp;CK</li>
+          <li data-i18n="sk1_l3">Analyse de logs, qualification d'incidents</li>
+          <li data-i18n="sk1_l4">Réponse à incident, stack ELK</li>
         </ul>
       </div>
       <div class="sk reveal">
-        <h3 data-i18n="sk2_h">Offensif · Reverse</h3>
+        <h3 data-i18n="sk2_h">Test d'intrusion</h3>
         <ul>
-          <li><b>Ghidra</b>, <b>Binwalk</b> (MIPS)</li>
-          <li><b>MITRE ATT&amp;CK</b></li>
+          <li data-i18n="sk2_l1">Web (OWASP Top 10), infra, <b>Active Directory</b></li>
+          <li data-i18n="sk2_l2">Reconnaissance, exploitation, post-exploitation</li>
+          <li>Pivoting (Ligolo-ng)</li>
           <li>Burp Suite, Nmap, Metasploit</li>
-          <li data-i18n="sk2_l4">Pivoting (Ligolo-ng), Active Directory</li>
         </ul>
       </div>
       <div class="sk reveal">
-        <h3 data-i18n="sk3_h">Dev · Infra</h3>
+        <h3 data-i18n="sk3_h">Reverse & vulnérabilités</h3>
         <ul>
-          <li><b>Python</b>, Bash, C/C++</li>
-          <li>FastAPI, SQL, Git</li>
-          <li>Linux, Docker</li>
-          <li data-i18n="sk3_l4">OpenSSL (AES, RSA, S/MIME)</li>
+          <li><b>Ghidra</b>, <b>Binwalk</b>, MIPS Assembly</li>
+          <li data-i18n="sk3_l2">Code bas niveau, firmware IoT</li>
+          <li data-i18n="sk3_l3">Reproduction de CVE, scoring CVSS</li>
+          <li data-i18n="sk3_l4">Veille CVE/NVD/ANSSI</li>
         </ul>
       </div>
       <div class="sk reveal">
-        <h3 data-i18n="sk4_h">Pratique continue</h3>
+        <h3 data-i18n="sk4_h">Analyse & rapport</h3>
         <ul>
-          <li><b>TryHackMe</b> : rank 3420 · 379 rooms · top 1%</li>
-          <li>HackTheBox, Root-Me</li>
-          <li data-i18n="sk4_l3">Lab personnel monté de zéro</li>
-          <li data-i18n="sk4_l4">Veille et contribution open source</li>
+          <li data-i18n="sk4_l1">Priorisation des vulnérabilités</li>
+          <li data-i18n="sk4_l2">Scoring CVSS</li>
+          <li data-i18n="sk4_l3">Rédaction de rapports</li>
+        </ul>
+      </div>
+      <div class="sk reveal">
+        <h3 data-i18n="sk5_h">Dev & systèmes</h3>
+        <ul>
+          <li><b>Python</b>, Bash, C/C++, FastAPI</li>
+          <li>Docker, Git, OpenSSL (AES, RSA, S/MIME)</li>
+          <li data-i18n="sk5_l3">Linux (Kali, Ubuntu, Debian), Windows Server</li>
+          <li>Active Directory, TCP/IP, DNS, VPN</li>
+        </ul>
+      </div>
+      <div class="sk reveal">
+        <h3 data-i18n="sk6_h">CTF & certifications</h3>
+        <ul>
+          <li><b>TryHackMe</b> : rank 1856 · 467 rooms · top 1%</li>
+          <li>HackTheBox, Root-Me, PortSwigger</li>
+          <li data-i18n="sk6_l3">CTF réguliers (expl., reverse, web, forensics)</li>
+          <li data-i18n="sk6_l4">ISC2 CC (en cours) · Anglais C1</li>
         </ul>
       </div>
     </div>
@@ -333,63 +360,97 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
   <div class="wrap contact-box reveal">
     <p class="eyebrow" data-i18n="ct_eyebrow">Alternance septembre 2026</p>
     <h2 style="font-family:var(--font-display);font-size:1.7rem;margin-bottom:14px" data-i18n="ct_title">Parlons-en</h2>
-    <p data-i18n="ct_p">Vous cherchez une alternante qui sait à la fois détecter côté SOC et comprendre l'attaque côté lab ? Écrivez-moi, je réponds vite.</p>
+    <p data-i18n="ct_p">Vous cherchez une alternante qui pense l'attaque et la détection dans le même mouvement ? Écrivez-moi, je réponds vite.</p>
     <div class="contact-links">
       <a class="btn btn-primary" href="mailto:audreyadjada@gmail.com">audreyadjada@gmail.com</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/audrey-adjada" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost" href="https://github.com/Obine-adjada" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-ghost" href="assets/CV_Obine_ADJADA.pdf" download data-i18n="ct_cv">CV (PDF)</a>
+      <a class="btn btn-ghost" href="#" data-cv-open data-i18n="ct_cv">CV (PDF)</a>
     </div>
   </div>
 </section>
+
+<div class="cv-overlay" id="cvOverlay" role="dialog" aria-modal="true" aria-labelledby="cvTitle">
+  <div class="cv-modal">
+    <button class="cv-close" id="cvClose" aria-label="Fermer">&times;</button>
+    <p class="eyebrow" data-i18n="cv_eyebrow">Deux formats, un seul profil</p>
+    <h3 id="cvTitle" data-i18n="cv_title">Choisissez votre version</h3>
+    <p class="sub" data-i18n="cv_sub">Même contenu, mise en page adaptée à votre process de recrutement.</p>
+    <div class="cv-opts">
+      <a class="cv-opt" href="assets/CV_Obine_ADJADA_ATS.pdf" download>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/></svg>
+        <strong data-i18n="cv_ats_h">Version ATS</strong>
+        <span data-i18n="cv_ats_p">Format A4 sobre, texte sélectionnable. Pour les portails de candidature et les grands groupes.</span>
+        <span class="dl" data-i18n="cv_dl">Télécharger le PDF ↓</span>
+      </a>
+      <a class="cv-opt" href="assets/CV_Obine_ADJADA_DESIGN.pdf" download>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M13 8h5"/><path d="M13 12h5"/><path d="M13 16h3"/></svg>
+        <strong data-i18n="cv_dsg_h">Version Design</strong>
+        <span data-i18n="cv_dsg_p">Mise en page deux colonnes, plus visuelle. Pour un envoi direct ou une lecture rapide.</span>
+        <span class="dl" data-i18n="cv_dl">Télécharger le PDF ↓</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">© 2026 Obine Adjada · <span data-i18n="ft">Lens, France · Aucune donnée sensible ni détail exploitable sur ce site.</span></div>
 </footer>
 
 <script>
-/* ---------- i18n ---------- */
 const I18N = {
-  fr: {}, /* le HTML est déjà en français, on stocke les originaux au premier switch */
+  fr: {},
   en: {
     nav_projects:"Projects", nav_writeups:"Write-ups", nav_timeline:"Background", nav_skills:"Skills", nav_contact:"Contact", nav_cv:"Resume ↓",
-    hero_eyebrow:"MSc Cybersecurity student · Université d'Artois",
-    hero_title:"3 CVEs reproduced and documented at the NVD. A purple team lab built from scratch. <em>Top 1% worldwide on TryHackMe.</em>",
-    hero_lede:"SOC detection (Splunk, Sentinel) and pentesting at Orange Cyberdefense, plus offensive work in the lab. Looking for a cybersecurity apprenticeship starting September 2026, 3 weeks company / 1 week school. Based in Lens, France, open to relocation.",
+    hero_eyebrow:"MSc Cybersecurity student · Pentest & SOC / Detection",
+    hero_title:"My best offensive tool is <em>knowing the blue side.</em>",
+    hero_lede:"SOC detection (Splunk, Sentinel, Sigma rules) and offensive security (pentest, reverse, exploitation). 3 CVEs reproduced at the NVD, 5 months at Orange Cyberdefense in SIEM alert analysis and penetration testing, top 1% worldwide on TryHackMe. Looking for an apprenticeship in SOC, detection or pentest from September 2026, 3 weeks company / 1 week school. Based in Lens, France, open nationwide.",
     hero_cta1:"View projects", hero_cta2:"Download resume",
     proj_eyebrow:"Proof, not promises", proj_title:"Projects", proj_link:"View on GitHub →",
-    proj1_tag:"Reverse / IoT", proj1_h:"IoT firmware audit · 3 CVEs reproduced at the NVD",
-    proj1_p:"Full audit of a TP-Link router: firmware extraction with Binwalk, MIPS reverse engineering in Ghidra, reproduction and documentation of 3 CVEs referenced at the NVD. Detailed methodology, no exploitable details disclosed.",
-    proj2_tag:"Purple Team", proj2_h:"Purple Team Scenario Engine",
-    proj2_p:"Python attack-scenario engine mapped to MITRE ATT&CK: runs offensive techniques and validates SIEM detection through Sigma rules on Splunk and Wazuh. Fully automated red/blue loop.",
+    proj1_tag:"Purple Team", proj1_h:"Purple Team Scenario Engine",
+    proj1_p:"Python engine replaying 8 MITRE ATT&CK TTPs on the red side (web exploitation, AD pentest, phishing, pivoting) and validating blue-side detection through Sigma rules on Splunk and Wazuh. Automated offensive/defensive loop: the project that sums up my profile.",
+    proj2_tag:"Reverse / IoT", proj2_h:"IoT firmware audit · 3 CVEs reproduced at the NVD",
+    proj2_p:"Offensive audit of a TP-Link router: firmware extraction (Binwalk), MIPS reverse engineering and low-level code analysis (Ghidra), reproduction and exploitation of 3 critical vulnerabilities (CVSS 8.2 / 7.8 / 7.5), structured report.",
     proj3_tag:"AI Security", proj3_h:"Secure AI Proxy",
-    proj3_p:"Security proxy for LLM applications: prompt injection and malicious content detection with over 95% detection rate, logging and monitoring through the ELK stack.",
+    proj3_p:"Prompt injection and malicious content detection in front of an LLM: over 95% detection, 400+ requests/sec, monitoring through the ELK stack.",
     proj4_tag:"Open source", proj4_h:"Mattermost contribution",
-    proj4_p:"Pull request accepted by the Mattermost team: documentation on OpenSearch protected index handling. Real-world open source contribution (code review, project conventions).",
+    proj4_p:"Issue #8493: Bash script, pull request merged by the Mattermost team. Real-world open source contribution (code review, project conventions).",
     wu_eyebrow:"Documented methodology", wu_title:"Technical write-ups", wu_read:"Read →",
-    wu1_h:"TP-Link firmware audit: from Binwalk to CVE reproduction",
-    wu1_p:"Extraction, MIPS static analysis in Ghidra, controlled lab reproduction of vulnerabilities referenced at the NVD.",
-    wu2_h:"Automating detection validation with Sigma",
-    wu2_p:"How the Purple Team Scenario Engine replays ATT&CK techniques and checks the SIEM raises the expected alert.",
+    wu1_h:"Replaying 8 ATT&CK TTPs and validating detection with Sigma",
+    wu1_p:"How the Purple Team Scenario Engine chains web exploitation, AD pentest, phishing and pivoting, then checks the SIEM raises the expected alert.",
+    wu2_h:"TP-Link firmware audit: from Binwalk to CVE reproduction",
+    wu2_p:"Extraction, MIPS static analysis in Ghidra, controlled lab reproduction of 3 vulnerabilities referenced at the NVD.",
     wu3_h:"Detecting prompt injection in front of an LLM",
-    wu3_p:"Secure AI Proxy architecture, detection strategy and monitoring of attempts in ELK.",
+    wu3_p:"Secure AI Proxy architecture, detection strategy (>95%, 400+ req/sec) and monitoring of attempts in ELK.",
     wu_note:"Every write-up follows one strict rule: methodology and lessons only, never exploitable details or sensitive data. Responsible disclosure applies to a portfolio too.",
     tl_eyebrow:"Where I come from, where I'm going", tl_title:"Background",
-    tl1_d:"Sept. 2026 · goal", tl1_h:"Cybersecurity apprenticeship",
-    tl1_p:"SOC, pentest or offensive security. 3 weeks company / 1 week school. Hauts-de-France and nationwide.",
-    tl2_h:"MSc Cybersecurity (M1) · Université d'Artois (Lens)",
-    tl2_p:"Cryptography, network security, vulnerability analysis, hands-on projects. On the side: personal lab and intensive CTF practice.",
-    tl3_h:"Internship · Orange Cyberdefense (SOC & Pentest)",
-    tl3_p:"SOC side: alert detection on Splunk and Microsoft Sentinel, vulnerability analysis with CVSS scoring. Offensive side: penetration testing, reconnaissance and participation in Red Team operations, in a real client environment.",
-    tl4_h:"DevOps internship · RightCom (Cotonou)",
-    tl4_p:"First professional experience in a DevOps environment: automation, product culture and international teamwork.",
+    tl1_d:"Sept. 2026 · goal", tl1_h:"Apprenticeship in SOC, detection or pentest",
+    tl1_p:"3 weeks company / 1 week school. Nationwide.",
+    tl2_h:"MSc Computer Science, Cybersecurity track · Université d'Artois (Lens)",
+    tl2_p:"Detection, offensive security, cryptography, networking. On the side: personal lab and intensive CTF practice.",
+    tl3_h:"Cybersecurity Intern (SOC & Pentest) · Orange Cyberdefense (Massy)",
+    tl3_p:"Web (OWASP Top 10), infrastructure and Active Directory penetration testing: reconnaissance, exploitation, post-exploitation. SOC detection: SIEM alert analysis (Splunk, Sentinel), incident qualification, CVSS scoring, CVE/NVD/ANSSI watch. Understanding attack chains from both sides. Python/Bash automation tooling.",
+    tl4_h:"BSc Computer Science · Université d'Artois (Lens)",
+    tl4_p:"Systems, networking and development fundamentals.",
+    tl5_h:"DevOps & Security Intern · RightCom (Cotonou)",
+    tl5_p:"Linux administration, Docker, CI/CD, ELK stack, Python/Bash scripting in a cloud environment.",
+    tl6_h:"BSc Cybersecurity · ESGIS (Benin)",
+    tl6_p:"First specialisation in cybersecurity.",
     sk_eyebrow:"Tools and playgrounds", sk_title:"Skills",
-    sk1_h:"Detection · SOC", sk1_l3:"<b>CVSS</b> · vulnerability analysis",
-    sk2_h:"Offensive · Reverse", sk2_l4:"Pivoting (Ligolo-ng), Active Directory",
-    sk3_h:"Dev · Infra", sk3_l4:"OpenSSL (AES, RSA, S/MIME)",
-    sk4_h:"Continuous practice", sk4_l3:"Personal lab built from scratch", sk4_l4:"Threat watch and open source contribution",
+    sk1_h:"Detection & SOC", sk1_l3:"Log analysis, incident qualification", sk1_l4:"Incident response, ELK stack",
+    sk2_h:"Penetration testing", sk2_l1:"Web (OWASP Top 10), infra, <b>Active Directory</b>", sk2_l2:"Reconnaissance, exploitation, post-exploitation",
+    sk3_h:"Reverse & vulnerabilities", sk3_l2:"Low-level code, IoT firmware", sk3_l3:"CVE reproduction, CVSS scoring", sk3_l4:"CVE/NVD/ANSSI watch",
+    sk4_h:"Analysis & reporting", sk4_l1:"Vulnerability prioritisation", sk4_l2:"CVSS scoring", sk4_l3:"Report writing",
+    sk5_h:"Dev & systems", sk5_l3:"Linux (Kali, Ubuntu, Debian), Windows Server",
+    sk6_h:"CTF & certifications", sk6_l3:"Regular CTFs (expl., reverse, web, forensics)", sk6_l4:"ISC2 CC (in progress) · English C1",
     ct_eyebrow:"Apprenticeship · September 2026", ct_title:"Let's talk",
-    ct_p:"Looking for an apprentice who can both detect on the SOC side and understand the attack on the lab side? Drop me a line, I reply fast.",
+    ct_p:"Looking for an apprentice who thinks about attack and detection in one motion? Drop me a line, I reply fast.",
     ct_cv:"Resume (PDF)",
+    cv_eyebrow:"Two formats, one profile", cv_title:"Choose your version",
+    cv_sub:"Same content, layout adapted to your recruitment process.",
+    cv_ats_h:"ATS version", cv_ats_p:"Clean A4 format, selectable text. For application portals and large companies.",
+    cv_dsg_h:"Design version", cv_dsg_p:"Two-column layout, more visual. For direct sending or a quick read.",
+    cv_dl:"Download PDF ↓",
     ft:"Lens, France · No sensitive data or exploitable details on this site."
   }
 };
@@ -398,26 +459,29 @@ const toggle = document.getElementById("langToggle");
 function applyLang(l){
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key = el.dataset.i18n;
-    if(!(key in I18N.fr)) I18N.fr[key] = el.innerHTML; /* sauvegarde du FR original */
-    const val = l==="fr" ? I18N.fr[key] : (I18N.en[key] ?? I18N.fr[key]);
-    el.innerHTML = val;
+    if(!(key in I18N.fr)) I18N.fr[key] = el.innerHTML;
+    el.innerHTML = l==="fr" ? I18N.fr[key] : (I18N.en[key] ?? I18N.fr[key]);
   });
   document.documentElement.lang = l;
   toggle.innerHTML = l==="fr" ? "<b>FR</b> / EN" : "FR / <b>EN</b>";
 }
 toggle.addEventListener("click",()=>{ lang = lang==="fr" ? "en" : "fr"; applyLang(lang); });
-
-/* ---------- burger ---------- */
 const burger = document.getElementById("burger");
 const navLinks = document.getElementById("navLinks");
 burger.addEventListener("click",()=>navLinks.classList.toggle("open"));
 navLinks.addEventListener("click",e=>{ if(e.target.tagName==="A") navLinks.classList.remove("open"); });
-
-/* ---------- scroll reveal ---------- */
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }});
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+const cvOverlay = document.getElementById("cvOverlay");
+const openCV = e => { e.preventDefault(); cvOverlay.classList.add("open"); navLinks.classList.remove("open"); };
+const closeCV = () => cvOverlay.classList.remove("open");
+document.querySelectorAll("[data-cv-open]").forEach(el=>el.addEventListener("click",openCV));
+document.getElementById("cvClose").addEventListener("click",closeCV);
+cvOverlay.addEventListener("click",e=>{ if(e.target===cvOverlay) closeCV(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeCV(); });
+cvOverlay.querySelectorAll(".cv-opt").forEach(el=>el.addEventListener("click",()=>setTimeout(closeCV,150)));
 </script>
 </body>
 </html>
